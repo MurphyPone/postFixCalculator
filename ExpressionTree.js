@@ -5,7 +5,7 @@ class ExpressionTree extends TreeNode {
 		this.fix(temp.getValue(), temp.getLeft(), temp.getRight());	//Circumvent casting issues
   }
 
-  //buildTree method
+  //buildTree method //TODO This nests TreeNodes too much...
   buildTree(ex) { //expression is a string of numbers/operators
 		var unprocessed = []; //stack
 
@@ -17,39 +17,39 @@ class ExpressionTree extends TreeNode {
 				unprocessed.push(new TreeNode(current) );	//Create it as a TreeNode when you push
 
       } else if( this.isOperator(current) ) {
-				var right = new TreeNode( unprocessed.pop() );
-        var left = new TreeNode( unprocessed.pop() );
+				var right = unprocessed.pop();  //Everything on stack is already a TreeNode
+        var left = unprocessed.pop();
 				//creates a sub-tree with operator as root and last 2 operands as the left and right sub-nodes
 				var root = new TreeNode(current, left, right);
 
 				unprocessed.push(root); //replace last 2 operands with a reference to the tree node that has them as leaves
-        console.log(unprocessed);
 			}
 		}
 		return unprocessed.pop();	//push that mini expression back onto the stack
 	}
 
-  //recursive method evalTrees
+  //recursive method evalTrees returns int
 	evalTree() {
 		return this.evalTreeHelper(this);	//pass in self as the root for the first pass
 	}
 
-	//recursive helper //TODO this is broken
+	//recursive helper //THIS WORKS
 	evalTreeHelper(root) {
-		if (this.isOperator(root.getValue() ) ) {
-			var op1 = this.evalTreeHelper( root.getLeft() );
-			var op2 = this.evalTreeHelper( root.getRight() );
+    console.log(root);
+		if (this.isOperator( root.getValue() ) ) {
+			var op1 = parseInt(this.evalTreeHelper( root.getLeft() ) );
+			var op2 = parseInt(this.evalTreeHelper( root.getRight() ) );
 
 			if(root.getValue() == "+" ) {
 				return op1 + op2;
       }
 
       if(root.getValue() == "-" ) {
-				return op1 * op2;
+				return op1 - op2;
       }
 
       if(root.getValue() == "*" ) {
-				return op1 - op2;
+				return op1 * op2;
       }
 
       if(root.getValue() == "/" ) {
