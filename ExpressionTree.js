@@ -1,5 +1,5 @@
 class ExpressionTree extends TreeNode {
-  constructor(expression) {
+  constructor(expression) { //Exprtession = String[] of terms
     super("");  //super TreeNode constructor
     var temp = this.buildTree(expression);	//Temp TreeNode
 		this.fix(temp.getValue(), temp.getLeft(), temp.getRight());	//Circumvent casting issues
@@ -35,7 +35,6 @@ class ExpressionTree extends TreeNode {
 
 	//recursive helper //THIS WORKS
 	evalTreeHelper(root) {
-    console.log(root);
 		if (this.isOperator( root.getValue() ) ) {
 			var op1 = parseInt(this.evalTreeHelper( root.getLeft() ) );
 			var op2 = parseInt(this.evalTreeHelper( root.getRight() ) );
