@@ -13,14 +13,25 @@
 }
 
 body {
-  font-family: Jaapokki;
+  font-family: Arvo;
 }
 
 .heading {
   display: block;
+  color: white;
   background-color: #fc4d45;
+  font-family: Jaapokki;
+  text-align:center;
+  width: auto;
+  margin: 4px;
+  padding: 5px;
+}
+
+.big {
+  display: block;
   color: white;
   font-family: Jaapokki;
+  text-decoration: underline;
   text-align:center;
   width: auto;
   margin: 4px;
@@ -41,6 +52,8 @@ body {
 }
 .centerme {
   text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 .canvas-wrapper {
   background-color: darkgrey;
@@ -61,13 +74,40 @@ body {
   background-color: white;
   color: #383838;
 }
+.bad-numbers {
+  display: inline-block;
+  color: black;
+  background-color: #8a8a8a;
+  border-style: solid;
+  text-align: center;
+  font-family: LemonMilk;
+  padding: 0px 15px;
+}
 
+.good-numbers {
+  display: inline-block;
+  color: black;
+  background-color: #8a8a8a;
+  border-style: solid;
+  text-align: center;
+  font-family: LemonMilk;
+  padding: 0px 22px;
+}
 
-p#output-field {
+h3#bad-title {
+  color: #be2626;
+}
+
+h3#good-title {
+  color: #45eb4a;
+}
+
+h2#output-field {
   color: white;
-  font-family: Metrophobic;
+  font-family: Arvo;
   font-size: 20px;
   text-align: center;
+  margin-top: 0;
 }
 
 input[type=text] { /*how does it know which input I'm referring to, does it not require an ID? */

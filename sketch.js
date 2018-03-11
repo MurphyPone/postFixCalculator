@@ -39,6 +39,8 @@ function setup() {
   aboutBtn = document.getElementsByName('about')[0]; //MAKE THE BUTTONS LOOK CLEANER
 }
 
+//For each node, if the mouse is over the ellipse, then get the value of the expression up to that node
+
 function draw() {
   background(51);
   stroke(255);
@@ -101,18 +103,25 @@ function drawNode(rt, layer, right) {
     }
 
     //adjust bubbles
-    var xOff = -10 * 2/layer;
-    var yOff = radius/layer;
+    textSize(2 * 40/layer);
+
+    var xOff = -textWidth(rt.value)/2.0;
+    var yOff = textWidth(rt.value)/2.0;
     var val = rt.value;
 
-    if(rt.value == "*") {
-      yOff = radius/layer
-    } else if( rt.value == "/" ) {
-      yOff = 23/layer;
-      xOff = -25/layer;
+    if( rt.value == "/" ) {
+      yOff = textWidth("÷")/2;
+      xOff = -textWidth("÷")/2;
       val = "÷";
-    } else if( rt.value == "-" ) {
-    } else if( rt.value == "+" ) {
+    } else if(rt.value == "*") {
+      yOff = textWidth(val);
+      xOff = -textWidth(val)/2;
+    } else if(rt.value == "-") {
+      yOff = textWidth(val)/1.5;
+      xOff = -textWidth(val)/2;
+    } else if(rt.value == "+") {
+      yOff = textWidth(val)/2;
+      xOff = -textWidth(val)/2;
     } else if( !isNaN(rt.value) ) {  //Is a number
       yOff = 10;
     } else {
@@ -120,7 +129,6 @@ function drawNode(rt, layer, right) {
     }
 
     //Draw circle/value
-    textSize(2 * 40/layer);
     text(val, xOff, yOff);
     noFill();
     strokeWeight(3);
