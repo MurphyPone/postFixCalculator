@@ -1,0 +1,83 @@
+/* import custom fonts */
+@font-face {
+  font-family: 'Jaapokki';
+  src: url('fonts/Jaapokki-Regular.otf'), url('/fonts/Jaapokki-Regular.otf');
+}
+@font-face {
+  font-family: 'LemonMilk';
+  src: url('fonts/LemonMilkbold.otf'), url('/fonts/LemonMilkbold.otf');
+}
+@font-face {
+  font-family: 'Metrophobic';
+  src: url('fonts/Metrophobic-Regular.ttf'), url('/fonts/Metrophobic-Regular.ttf');
+}
+
+body {
+  font-family: Jaapokki;
+}
+
+.heading {
+  display: block;
+  background-color: #fc4d45;
+  color: white;
+  font-family: Jaapokki;
+  text-align:center;
+  width: auto;
+  margin: 4px;
+  padding: 5px;
+}
+.container {
+  display: grid;
+  grid-template-columns: 2fr 7fr;
+  grid-gap: 5px;
+}
+.input {
+  background-color: #ff9340;
+  padding: 5px;
+  font-size: 12px;
+}
+.other {
+  align-content: center;
+}
+.centerme {
+  text-align: center;
+}
+.canvas-wrapper {
+  background-color: darkgrey;
+  width: auto;
+  height: 100%;
+}
+.button {
+  border: 1px solid #383838;
+  background-color: #383838;
+  color: white;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px;
+  text-decoration: none;
+}
+.button:hover {
+  border: 1px solid white;
+  background-color: white;
+  color: #383838;
+}
+
+
+p#output-field {
+  color: white;
+  font-family: Metrophobic;
+  font-size: 20px;
+  text-align: center;
+}
+
+input[type=text] { /*how does it know which input I'm referring to, does it not require an ID? */
+  width: 75%;
+}
+input[type=submit] {
+  width: 20%;
+}
+
+canvas {
+  width: inherit;
+  height: inherit;
+}

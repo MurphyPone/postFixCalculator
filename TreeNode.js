@@ -19,6 +19,10 @@ class TreeNode {
 	setRight(r) { this.right = r; }
 	setValue(v) { this.value = v; }
 
+  hasChildren() {
+    return (this.left != null && this.right != null);
+  }
+
 	fix(v, l, r) {
 		this.value = v;
 		this.left = l;

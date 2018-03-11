@@ -3,6 +3,7 @@ class ExpressionTree extends TreeNode {
     super("");  //super TreeNode constructor
     var temp = this.buildTree(expression);	//Temp TreeNode
 		this.fix(temp.getValue(), temp.getLeft(), temp.getRight());	//Circumvent casting issues
+    this.eval = parseInt(this.evalTree()); //int
   }
 
   //buildTree method //TODO This nests TreeNodes too much...
@@ -60,6 +61,55 @@ class ExpressionTree extends TreeNode {
 		} else {  //operands have no children in ExpressionTrees, so just return the value of the node
 			return root.getValue(); //cast to int after parsing the string?
     }
+	}
+
+  //CONVERSION STRING METHODS//
+  toPrefixNotation() {
+		return this.preOrder(this, "");
+	}
+
+  toInfixNotation() {
+		return this.inOrder(this, "");
+	}
+
+  toPostfixNotation() {
+		return this.postOrder(this, "");
+  }
+
+  //HELPER CONVERSION METHODS//
+  preOrder(root,  soFar) {	//TreeNode, String
+		var result = soFar; //String
+		if(root != null) {
+			result += root.getValue() + " ";
+			result += this.preOrder(root.getLeft(), soFar );
+			result += this.preOrder(root.getRight(), soFar );
+		}
+		return result;
+	}
+
+  postOrder(root,  soFar) {	//TreeNode, String
+		var result = soFar;
+		if(root != null) {
+			result += this.postOrder(root.getLeft(), soFar );
+			result += this.postOrder(root.getRight(), soFar );
+			result += root.getValue() + " ";
+		}
+		return result;
+	}
+
+  inOrder(root,  soFar) {	 //TreeNode, String
+		var result = soFar;
+		if(root != null) {
+			var left = new TreeNode(this.inOrder(root.getLeft(), soFar ) );
+			var v = root.getValue(); //String
+			var right = new TreeNode(this.inOrder(root.getRight(), soFar ) );
+
+			if(this.isOperator(v))
+				result += "(" + left.getValue() + " " + v + " " + right.getValue() + ")";	//Add spaces for readability
+			else
+				result += left.getValue() + v + right.getValue();
+		}
+		return result;
 	}
 
   //HELPER METHODS //
