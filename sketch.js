@@ -141,14 +141,14 @@ function drawNode(rt, layer, right) {
       rotate(1.75 * spread/layer);
         line(0, radius, 0, 100/(layer * .8) );
         translate(0, 100/(layer * .8)  );
-        drawNode(rt.getRight(), layer + 1, true);
+        drawNode(rt.getLeft(), layer + 1, true);
       pop();
 
       push();
         rotate(-1.75 * spread/layer);
         line(0, radius, 0, 100/(layer * .8) );
         translate(0, 100/(layer * .8)  );
-        drawNode(rt.getLeft(), layer + 1, false);
+        drawNode(rt.getRight(), layer + 1, false);
       pop();
     }
   }
